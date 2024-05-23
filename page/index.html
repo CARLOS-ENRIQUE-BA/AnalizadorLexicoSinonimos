@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Analizador de Texto</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 800px;
+            width: 100%;
+            padding: 20px;
+            border-radius: 12px;
+            height: 100vh;
+        }
+        h1, h2 {
+            color: #bb86fc;
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        textarea {
+            width: 100%;
+            max-width: 100%;
+            padding:         15px;
+        border: 1px solid #333;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        background-color: #2c2c2c;
+        color: #e0e0e0;
+        font-family: 'Arial', sans-serif;
+        font-size: 16px;
+        }
+        button {
+            background-color: #bb86fc;
+            color: #121212;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #9a67ea;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #1e1e1e;
+        }
+        th, td {
+            border: 1px solid #333;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #2c2c2c;
+            color: #bb86fc;
+        }
+        tr:nth-child(even) {
+            background-color: #2c2c2c;
+        }
+        tr:nth-child(odd) {
+            background-color: #1e1e1e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Analizador de Texto</h1>
+        <form action="/" method="post">
+            <textarea name="texto" rows="10" placeholder="Ingrese una palabra"></textarea>
+            <button type="submit">Analizar</button>
+        </form>
+
+        {% if resultados %}
+        <h2>Resultados del Análisis</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Línea</th>
+                    <th>Texto Original</th>
+                    <th>Texto Resultante</th>
+                    <th>Cambiadas</th>
+                    <th>Números</th>
+                    <th>Símbolos</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for resultado in resultados %}
+                <tr>
+                    <td>{{ resultado.linea }}</td>
+                    <td>{{ resultado.entrada }}</td>
+                    <td>{{ resultado.resultante }}</td>
+                    <td>{{ resultado.cambiadas }}</td>
+                    <td>{{ resultado.numeros }}</td>
+                    <td>{{ resultado.simbolos }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    </div>
+</body>
+</html>
